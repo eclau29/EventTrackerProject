@@ -7,9 +7,9 @@ Spring REST/JavaScript/Angular homework for Skill Distillery Week 13 - 15
 |-----------|--------------|--------|
 | GET |/api/nationalparks | Retrieve all national parks |
 | GET |/api/nationalparks/{id} | Retrieve one national park |
-| POST |/api/nationalparks b | Add a NP |
-| PUT |/api/nationalparks/{id} | Replace NP |
-| DELETE | /api/nationalparks/{id} | Delete NP |
+| POST |/api/nationalparks | Add a national park |
+| PUT |/api/nationalparks/{id} | Replace/Update a national park |
+| DELETE | /api/nationalparks/{id} | Delete a national park |
 
 ### Technologies Used
 
