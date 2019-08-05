@@ -1,25 +1,44 @@
 package com.skilldistillery.nationalpark.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "national_park")
 public class NationalPark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
 	private String name;
+	
+	@Column(name="state_abbrev_location")
 	private String stateAbbrevLocation;
-	private boolean visited;
+	
+	private Boolean visited;
+	private String comment;
 	
 	
 	// M E T H O D S
 	
 	public int getId() {
 		return id;
+	}
+	public Boolean getVisited() {
+		return visited;
+	}
+	public void setVisited(Boolean visited) {
+		this.visited = visited;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -36,7 +55,7 @@ public class NationalPark {
 	public void setStateAbbrevLocation(String stateAbbrevLocation) {
 		this.stateAbbrevLocation = stateAbbrevLocation;
 	}
-	public boolean isVisited() {
+	public Boolean isVisited() {
 		return visited;
 	}
 	public void setVisited(boolean visited) {
@@ -75,7 +94,7 @@ public class NationalPark {
 	@Override
 	public String toString() {
 		return "NationalPark [id=" + id + ", name=" + name + ", stateAbbrevLocation=" + stateAbbrevLocation
-				+ ", visited=" + visited + "]";
+				+ ", visited=" + visited + ", comment=" + comment + "]";
 	}
 	
 	

@@ -39,6 +39,7 @@ class NationalParkTests {
 		em.close();
 		np = null;
 	}
+	
 	@Disabled
 	@Test
 	void test() {
@@ -49,6 +50,8 @@ class NationalParkTests {
 	void test_NP_mappings() {
 		assertNotNull(np);
 		assertEquals("Rocky Mountain", np.getName());
+		assertEquals("Need to go back!", np.getComment());
+		assertEquals(true, np.isVisited());
 	}
 
 }
