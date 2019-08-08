@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>NPTracker</title>
+</head>
+<body>
+	<h2>Welcome to National Park Tracker: Which National Parks Have
+		You Visited?</h2>
+	<br>
+	<br>
+
+	<button name='allParks' id='allParks'><h2>List All Parks!</h2></button>
+	<br>
+	<br>
+	<h3>Show me ONE park!</h3>
+	<br>
+	<form name="parkForm">
+		<input type="number" name="parkId">
+		<button name="lookup">Get Park by Id</button>
+	</form>
+	<br>
+
+	<hr>
+	<h3>Add a Park!</h3>
+	<form name="addForm">
+	
+		Park Name: <input type="text" name="name" placeholder="eg. Yellowstone"> <br>
+		State Location: <input type="text" name="stateAbbrevLocation" placeholder="eg. WY"><br>
+		Have You Visited? <br> 
+			<input type="radio" id="true" name="visited" value="true">Yes!
+			<input type="radio" id="false" name="visited" value="false">Not yet<br> <br>
+		Comment: <input type="text" name="comment" placeholder="eg. Amazing wildlife! Would love to go back!" size="50"><br>
+		
+		<input type="submit" name="submit" value="Add Park" />
+		
+	</form>
+	<br>
+	<hr>
+	
+	<div id="output">
+		<div id="parkData"></div>
+	</div>
+	
+	<hr>
+	<h3>Update the Displayed Park</h3>
+			<form name="updateForm">
+	
+				Park Name: <input type="text" name="name" placeholder="eg. Yellowstone"> <br>
+				State Location: <input type="text" name="stateAbbrevLocation" placeholder="eg. WY"><br>
+				Have You Visited? <br> 
+					<input type="radio" id="true" name="visited" value="true">Yes!
+					<input type="radio" id="false" name="visited" value="false">Not yet<br> <br>
+				Comment: <input type="text" name="comment" placeholder="eg. Amazing wildlife! Would love to go back!" size="50"><br>
+		
+				<input type="submit" name="submit" value="Update Park" />
+		
+			</form>
+	<br>
+	<hr>
+	
+	
+	
+
+	<script src="js/parkTrackerFunctions.js" charset="utf-8"></script>
+</body>
+</html>
