@@ -4,6 +4,7 @@ window.addEventListener('load', function(e) {
 });
 
 function init() {
+	document.getElementById("updateFormDiv").style.display="none";
 	document.parkForm.addEventListener('click', function(e) {
 		e.preventDefault();
 		console.log("ID Search button clicked!");
@@ -23,6 +24,9 @@ function init() {
 		e.preventDefault();
 		addPark();
 	});
+	
+	
+	
 }
 
 function getPark(parkId) {
@@ -68,23 +72,54 @@ function displayPark(park) {
 	comment.textContent = "Comment: " + park.comment;
 	dataDiv.appendChild(comment);
 	
-
-//	let updateButton = document.createElement('button');
-//	updateButton.innerHTML = "Update Park";
-//	dataDiv.appendChild(updateButton);
-//	updateButton.addEventListener('click', function(e) {
-//		e.preventDefault();
-//		updatePark(park.id)
-//	});
+	
+	let editButton = document.createElement('button');
+	editButton.innerHTML = "Edit Park";
+	dataDiv.appendChild(editButton);
+	editButton.addEventListener('click', function(e){
+		e.preventDefault();
+		showUpdateForm(park);
+//		updatePark(park.id);
+	});
+	
+	document.getElementById('updateFormButton').addEventListener('click', function(e){
+		e.preventDefault();
+		console.log("updateform button event listener added")
+		let form = document.getElementById('updateForm');
+		updatePark(park);
+	});
+	
 
 	let delButton = document.createElement('button');
 	delButton.innerHTML = "Delete Park";
 	dataDiv.appendChild(delButton);
 	delButton.addEventListener('click', function(e) {
 		e.preventDefault();
-		deletePark(park.id)
+		deletePark(park.id);
 	});
 
+}
+
+function showUpdateForm(park){
+	console.log("in showupdate form " + park)
+	let updateForm = document.getElementById('updateForm');
+	updateForm.parkId.value = park.id;
+	updateForm.name.value = park.name;
+	updateForm.stateAbbrevLocation.value = park.stateAbrevLocation;
+	updateForm.visited.value = park.visited;
+	updateForm.comment.value = park.comment;
+	
+	console.log("show update form: " + park.name)
+	//updatePark(park);
+	
+	let updateFormDiv = document.getElementById('updateFormDiv');
+//	if (updateFormDiv.style.display === "none"){
+		updateFormDiv.style.display = "block";
+//	}
+//	else {
+//		updateFormDiv.style.display = "none";
+//	}
+	
 }
 
 function getAllParks() {
@@ -152,9 +187,11 @@ function addPark(e) {
 	xhr.send(JSON.stringify(newPark))
 }
 
-function updatePark(parkId) {
+function updatePark(park) {
+	console.log("in update park fn" + park.id);
+	console.log("Old name: " + park.name);
 	var xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'api/nationalparks/' + parkId);
+	xhr.open('PUT', 'api/nationalparks/' + park.id);
 	xhr.setRequestHeader("Content-type", "application/json");
 	xhr.onreadystatechange = function() {
 		if (xhr.readyState === 4 && xhr.status === 200) {
@@ -163,24 +200,25 @@ function updatePark(parkId) {
 		}
 
 	};
-	var dataDiv = document.getElementById('parkData');
-	dataDiv.textContent = '';
-
-	let nameH2 = document.createElement('h2');
-	nameH2.textContent = park.name;
-	console.log(nameH2);
-	dataDiv.appendChild(nameH2);
+//	var dataDiv = document.getElementById('parkData');
+//	dataDiv.textContent = '';
+//
+//	let nameH2 = document.createElement('h2');
+//	nameH2.textContent = park.name;
+//	console.log(nameH2);
+//	dataDiv.appendChild(nameH2);
 	
-	let form = document.updateForm;
+	let form = document.getElementById('updateForm');
 	let data = {
 		name : form.name.value,
 		stateAbbrevLocation : form.stateAbbrevLocation.value,
 		visited : form.visited.value,
 		comment : form.comment.value
 	}
-
+	console.log("Updated name: " + data.name); //printing out correct updated info! :D
 	xhr.send(JSON.stringify(data));
 }
+
 function deletePark(parkId) {
 	var xhr = new XMLHttpRequest();
 	xhr.open('DELETE', 'api/nationalparks/' + parkId);
@@ -188,6 +226,7 @@ function deletePark(parkId) {
 	xhr.onreadystatechange = function() {
 
 		let dataDiv = document.getElementById('parkData');
+		dataDiv.textContent = '';
 		let delMsg = document.createElement('li');
 		delMsg.textContent = "Park deleted!";
 		dataDiv.appendChild(delMsg);

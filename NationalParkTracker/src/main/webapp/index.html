@@ -39,23 +39,30 @@
 	<hr>
 	
 	<div id="output">
-		<div id="parkData"></div>
+		<div id="parkData">
+		<button onclick="showUpdateForm()">Edit Park</button>
+		</div>
 	</div>
 	
 	<hr>
-	<h3>Update the Displayed Park</h3>
-			<form name="updateForm">
-	
-				Park Name: <input type="text" name="name" placeholder="eg. Yellowstone"> <br>
-				State Location: <input type="text" name="stateAbbrevLocation" placeholder="eg. WY"><br>
-				Have You Visited? <br> 
-					<input type="radio" id="true" name="visited" value="true">Yes!
-					<input type="radio" id="false" name="visited" value="false">Not yet<br> <br>
-				Comment: <input type="text" name="comment" placeholder="eg. Amazing wildlife! Would love to go back!" size="50"><br>
-		
-				<input type="submit" name="submit" value="Update Park" />
+	<div id = "updateFormDiv">
+		<form id="updateForm" name = "updateForm">
+			<h3>Update the Displayed Park</h3>
+			Park Name: <input type="text" name="name" placeholder="eg. Yellowstone"> <br>
+			State Location: <input type="text" name="stateAbbrevLocation" placeholder="eg. WY"><br>
+			Have You Visited? <br> 
+				<input type="radio" id="true" name="visited" value="true">Yes!
+				<input type="radio" id="false" name="visited" value="false">Not yet<br> <br>
+			Comment: <input type="text" name="comment" placeholder="eg. Amazing wildlife! Would love to go back!" size="50"><br>		
+			
+			<input type="submit" id='updateFormButton' name="submit" value="Update Park" />
+			<input type="hidden" name="parkId"/>
+			
+			<!-- <input type="submit" name="submit" value="Cancel" /> -->
+			
 		
 			</form>
+	</div>
 	<br>
 	<hr>
 	
